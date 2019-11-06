@@ -27,17 +27,18 @@ var turnScore = 0;
 $('#rollButton').click(function(){
   var hold  = false;
   var playerDiceRoll= dice();
-  takeTurn(hold);
+  takeTurn(hold, playerDiceRoll);
   // console.log(playerDiceRoll, hold);
 
 $('#holdButton').click(function(){
   var hold = true;
-  takeTurn(hold);
+  var playerDiceRoll= 0;
+  takeTurn(hold, playerDiceRoll);
 });
 
 
 
-function takeTurn(hold){
+function takeTurn(hold, playerDiceRoll){
 
 
 
@@ -57,7 +58,7 @@ function takeTurn(hold){
 
       console.log(playerDiceRoll, turnScore);
     }
-
+    
     return turnScore;
     console.log( playerDiceRoll, turnScore);
 }

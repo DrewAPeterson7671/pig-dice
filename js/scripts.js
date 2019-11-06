@@ -16,7 +16,58 @@ $(document).ready(function () {
     return (Math.floor(Math.random() * Math.floor(6))) + 1;
   }
 
+// Business logic for game
 
+// take a turn
+//button push to first roll
+var turnScore = 0;
+
+
+
+$('#rollButton').click(function(){
+  var hold  = false;
+  var playerDiceRoll= dice();
+  takeTurn(hold);
+  // console.log(playerDiceRoll, hold);
+
+$('#holdButton').click(function(){
+  var hold = true;
+  takeTurn(hold);
+});
+
+
+
+function takeTurn(hold){
+
+
+
+    if (playerDiceRoll === 1) {
+      switchPlayer =  true;
+
+    } else if (hold === true) {
+      console.log(turnScore);
+      return turnScore;
+
+
+    } else {
+      // roll button was hit
+      //accumulate turn score
+      switchPlayer = false;
+      turnScore = turnScore + playerDiceRoll;
+
+      console.log(playerDiceRoll, turnScore);
+    }
+
+    return turnScore;
+    console.log( playerDiceRoll, turnScore);
+}
+
+// call function switch player
+
+
+});
+
+//wait for user button
 
 
 
@@ -28,10 +79,7 @@ var playerTwo = new Player("Alice", "0", "0");
 
 // var result = dice();
 
-console.log(dice(), dice());
 
-
-console.log(playerOne, playerTwo);
 
 
 });

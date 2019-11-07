@@ -1,4 +1,6 @@
 $(document).ready(function () {
+  $("form#nameInput").submit(function(event) {
+  event.preventDefault();
 
   // Business Logic for Player ---------
   function Player(name, totalScore) {
@@ -30,13 +32,15 @@ function switchPlayers(player){
   var turnScore = 0;
 
   function takeTurn(hold, playerDiceRoll){
-console.log(player.name, "total = " +  player.totalScore);
+    console.log(player.name, "total = " +  player.totalScore);
     if (playerDiceRoll === 1) {
       turnScore = 0;
       player = switchPlayers(player);
       console.log("rolled a 1, switched to" + player.name);
     } else if (hold === true) {
       player.totalScore = player.totalScore + turnScore;
+      $("#playerOneTotal").text(playerOne.totalScore);
+      $("#playerTwoTotal").text(playerTwo.totalScore);
       turnScore = 0;
       console.log(player.totalScore, player.name);
       player = switchPlayers(player);
@@ -46,6 +50,7 @@ console.log(player.name, "total = " +  player.totalScore);
       turnScore = turnScore + playerDiceRoll;
       console.log(turnScore, player.name, playerDiceRoll);
     }
+
     return turnScore;
 
   }
@@ -63,10 +68,24 @@ console.log(player.name, "total = " +  player.totalScore);
     takeTurn(hold, playerDiceRoll);
   });
 
-  var playerOne = new Player("Bob", 0);
-  var playerTwo = new Player("Alice", 0);
+
+
+  var playerOneNameInput = $("#playerOneUserInput").val();
+  var playerTwoNameInput = $("#playerTwoUserInput").val();
+
+
+
+console.log(playerOneNameInput);
+
+  var playerOne = new Player(playerOneNameInput, 0);
+  var playerTwo = new Player(playerTwoNameInput, 0);
+
+  $("#playerOneName").text(playerOne.name);
+  $("#playerTwoName").text(playerTwo.name);
+
+  // console.log(playerOne);
 
   var player = playerOne;
 
-
-  });
+});
+});
